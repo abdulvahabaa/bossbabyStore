@@ -1,0 +1,204 @@
+{{>adminSidebar}}
+{{>adminHeader}}
+
+
+  <div class="content-header">
+
+    <div>
+      <h2 class="content-title card-title">Banner List</h2>
+      <p>Add, edit or delete a Banner.</p>
+    </div>
+    <div>
+      <button type="button" class="btn btn-primary mt-3" data-bs-toggle="modal" data-bs-target="#addBanner"> Add New
+        Banner
+      </button>
+
+      {{!-- <a href="/admin/addProductPage" class="btn btn-primary btn-sm rounded">Create new</a> --}}
+    </div>
+  </div>
+
+  <div class="card-body">
+    <div class="table-responsive">
+      <table class="table table-hover">
+        <thead class="bg-info">
+          <tr>
+            <th>img</th>
+            <th scope="col">Title</th>
+            <th scope="col">Small Title</th>
+            {{!-- <th scope="col">Offer price</th> --}}
+            {{!-- <th scope="col">stock</th>
+            <th scope="col">Category</th> --}}
+            <th scope="col">Offer price</th>
+            <th scope="col" class="text-end"> Action </th>
+          </tr>
+        </thead>
+        <tbody>
+          {{#each banners}}
+          <tr>
+            <td> <img style="width: 50px;" src="/images/banner-images/{{this.img.[0]}}" alt="Item"></td>
+            <td><b>{{this.Bname}}</b></td>
+            <td>{{this.Sname}}</td>
+
+            <td>{{this.offer}}</td>
+            {{!-- <td><span class="badge rounded-pill alert-warning">{{this.stock}}</span></td>
+            <td>{{this.category}}</td>
+            <td>{{this.discount}}%</td> --}}
+
+            <td class="text-end">
+              {{!-- <button class="btn btn-sm font-sm rounded btn-brand"> <i
+                  class="material-icons md-edit"></i>Edit</button> --}}
+
+              <button type="button"  class="btn btn-sm font-sm rounded btn-brand"
+                data-bs-toggle="modal" data-bs-target="#editBanner{{this._id}}"><i class="material-icons md-edit"></i> Edit
+                Banner
+              </button>
+
+              <a href="/admin/deleteBanner/{{this._id}}" class="btn btn-sm font-sm btn-light rounded "
+                onclick="return confirm('are sure you want to Delete {{this.name}}')"> <i
+                  class="material-icons md-delete_forever"></i>Delete</a>
+            </td>
+          </tr>
+
+
+
+          {{!-- edit Banner modal --}}
+          <div class="modal fade" id="editBanner{{this._id}}" tabindex="-1" aria-labelledby="addAddressLabel" aria-hidden="true">
+            {{!-- <form action="/user/add-address" method="post" enctype="multipart/form-data"> --}}
+              <div class="modal-dialog">
+                <div class="modal-content">
+                  <form action="/admin/editBanner" method="post"  id="updateBanner"  enctype="multipart/form-data">
+                    <div class="modal-header">
+                      <h3 class="modal-title fs-5" id="addAddressLabel">Edit your Details </h3>
+                      <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body ml-5">
+
+
+                      <div class="row">
+                        <div class="col-lg-9">
+                          <h2 class="checkout-title"></h2><!-- End .checkout-title -->
+                          <div class="row">
+                            <div class="">
+                              <label>Titile</label>
+                              <input type="text" id="Bname{{this._id}}" name="Bname" value={{this.Bname}} class="form-control" required>
+                            </div><!-- End .col-sm-6 -->
+
+
+
+                   
+                            <div class="">
+                              <label>sub</label>
+                              <input type="text" id="Sname{{this._id}}" name="Sname" value={{this.Sname}} class="form-control" required>
+                            </div><!-- End .col-sm-6 -->
+                          
+
+                          <div class="">
+                            
+                            <label>offer</label>
+                            <input type="text" id="offer{{this._id}}" name="offer" value={{this.offer}} class="form-control" required>
+                          </div><!-- End .col-sm-6 -->
+                        
+
+                        <div class="">
+                          <label class="form-label">Images</label>
+                          <img class="mt-3" src="/images/banner-images/{{this.img.[0]}}" alt="" 
+                            style="width: 100px; height:auto;" id="picName{{this._id}}">
+                          <input class="form-control" id="image{{this._id}}"  name="image" type="file" >
+                        </div>
+
+                      <div>
+                        <input type="text"  id='BannerId{{this._id}}' value="{{this._id}}" name="bannerId" class="form-control" hidden >
+                  </div><!-- End .col-sm-6 -->
+
+
+
+                      </div>
+                    </div>
+
+
+
+                    <div class="modal-footer mt-2">
+                      <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                      <button type="submit" class="btn btn-primary">Update Banner</button>
+                    </div>
+                  </form>
+                </div>
+
+              </div>
+
+</div>
+
+          {{/each}}
+
+
+
+
+        </tbody>
+      </table>
+    </div> <!-- table-responsive //end -->
+  </div> <!-- card-body end// -->
+
+
+  {{!-- add Banner modal --}}
+  <div class="modal fade" id="addBanner" tabindex="-1" aria-labelledby="addAddressLabel" aria-hidden="true">
+
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <form action="/admin/addBanner" method="post" id="addcheckout-form" enctype="multipart/form-data">
+            <div class="modal-header">
+              <h3 class="modal-title fs-5" id="addAddressLabel">Enter your Details </h3>
+              <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body ml-5">
+
+
+              <div class="row">
+                <div class="col-lg-9">
+                  <h2 class="checkout-title"></h2><!-- End .checkout-title -->
+                  <div class="row">
+                    <div class="">
+                      <label>Titile</label>
+                      <input type="text" name="Bname" class="form-control" required>
+                    </div><!-- End .col-sm-6 -->
+
+                    <div class="">
+                      <label>sub</label>
+                      <input type="text" name="Sname" class="form-control" required>
+                    </div><!-- End .col-sm-6 -->
+                  </div><!-- End .row -->
+
+                  <div class="">
+                    <label>offer</label>
+                    <input type="text" name="offer" class="form-control" required>
+                  </div><!-- End .col-sm-6 -->
+                </div><!-- End .row -->
+
+                <div class="">
+                  <label class="form-label">Images</label>
+                  {{!-- <img src="/images/product-images/{{product.img.[0]}}" alt="" style="width: 100px; height:auto;"
+                    id="imgView"> --}}
+                  <input class="form-control" name="image" type="file">
+                </div>
+
+                  
+             
+
+
+
+
+              </div>
+            </div>
+
+
+
+            <div class="modal-footer mt-2">
+              <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+              <button type="submit" class="btn btn-primary">Add Banner</button>
+            </div>
+          </form>
+        </div>
+
+      </div>
+
+    </div>
+    

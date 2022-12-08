@@ -1,0 +1,119 @@
+{{>adminSidebar}}
+{{>adminHeader}}
+
+
+
+
+
+<section class="content-main">
+  <div class="content-header">
+    <div>
+      <h2 class="content-title card-title">Order List </h2>
+      <p>Lorem ipsum dolor sit amet.</p>
+    </div>
+    <div>
+      <input type="text" placeholder="Search order ID" class="form-control bg-white">
+    </div>
+  </div>
+  <div class="card mb-4">
+    <header class="card-header">
+      <div class="row gx-3">
+        <div class="col-lg-4 col-md-6 me-auto">
+          <input type="text" placeholder="Search..." class="form-control">
+        </div>
+        <div class="col-lg-2 col-6 col-md-3">
+          <select class="form-select">
+            <option>Status</option>
+            <option>Active</option>
+            <option>Disabled</option>
+            <option>Show all</option>
+          </select>
+        </div>
+        <div class="col-lg-2 col-6 col-md-3">
+          <select class="form-select">
+            <option>Show 20</option>
+            <option>Show 30</option>
+            <option>Show 40</option>
+          </select>
+        </div>
+      </div>
+    </header> <!-- card-header end// -->
+    <div  class="card-body">
+      <div  class="table-responsive">
+        <table id='statusChange' class="table table-hover">
+          <thead>
+            <tr>
+              <th>image</th>
+              <th scope="col">product</th>
+              <th scope="col">category</th>
+              <th scope="col">price</th>
+              <th scope="col">Qty</th>
+              <th></th>
+              <th scope="col">staus</th>
+              <th scope="col" class="text-end"> Action </th>
+            </tr>
+          </thead>
+          <tbody>
+            {{#each products}}
+            <tr>
+              <td><img style="width:50px" src="/images/product-images/{{this.product.img.[0]}}" alt=""></td>
+              <td><b>{{this.product.name}}</td>
+              <td>{{this.product.category}}</td>
+              <td>{{this.product.price}}</td>
+              <td>{{this.quantity}}</td>
+             
+              <td><td><span  class="badge rounded-pill alert-warning">{{this.productStatus}}</td>
+              <td class="text-end">
+                {{!-- <a href="#" class="btn btn-md rounded font-sm">Detail</a> --}}
+                <div class="dropdown" style="position: inherit;">
+                  <a href="#" data-bs-toggle="dropdown" class="btn btn-light rounded btn-sm font-sm"> <i
+                      class="material-icons md-more_horiz"></i> </a>
+                  <div class="dropdown-menu">
+                    <a class="dropdown-item" onclick="changeStatus('{{this._id}}','{{this.item}}','Shipped')">Shipped</a>
+                    <a class="dropdown-item" onclick="changeStatus('{{this._id}}','{{this.item}}','Out for Delivery')">Out for Delivery</a>
+                     <a class="dropdown-item" onclick="changeStatus('{{this._id}}','{{this.item}}','Deliverd')">Deliverd</a>
+
+                     <a class="dropdown-item" onclick="changeStatus('{{this._id}}','{{this.item}}','Return Approved')">Return Approved</a>
+                     
+                    <a class="dropdown-item text-danger" onclick="changeStatus('{{this._id}}','{{this.item}}','Cancelled')">Cancel</a>
+                  </div>
+                </div> <!-- dropdown //end -->
+              </td>
+            </tr>
+          {{/each}}
+          </tbody>
+        </table>
+      </div> <!-- table-responsive //end -->
+    </div> <!-- card-body end// -->
+  </div> <!-- card end// -->
+  <div class="pagination-area mt-15 mb-50">
+    <nav aria-label="Page navigation example">
+      <ul class="pagination justify-content-start">
+        <li class="page-item active"><a class="page-link" href="#">01</a></li>
+        <li class="page-item"><a class="page-link" href="#">02</a></li>
+        <li class="page-item"><a class="page-link" href="#">03</a></li>
+        <li class="page-item"><a class="page-link dot" href="#">...</a></li>
+        <li class="page-item"><a class="page-link" href="#">16</a></li>
+        <li class="page-item"><a class="page-link" href="#"><i class="material-icons md-chevron_right"></i></a></li>
+      </ul>
+    </nav>
+  </div>
+</section> <!-- content-main end// -->
+<script>
+
+function changeStatus(orderid,productid,actions){
+  $.ajax({
+    url:"/admin/productStatus",
+    method:'post',
+    data:{
+      orderId:orderid,
+      item:productid,
+      action:actions
+    },
+    success:()=>{
+      
+      location.reload()
+    }
+  })
+}
+</script>

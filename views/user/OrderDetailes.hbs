@@ -1,0 +1,98 @@
+{{>userHeader}}
+
+<body>
+	<div class="page-wrapper">
+
+
+		<main class="main">
+			<div class="page-header text-center" style="background-image: url('assets/images/page-header-bg.jpg')">
+				<div class="container">
+					<h1 class="page-title">Order Deatailes<span>Shop</span></h1>
+				</div><!-- End .container -->
+			</div><!-- End .page-header -->
+			<nav aria-label="breadcrumb" class="breadcrumb-nav">
+				<div class="container">
+					<ol class="breadcrumb">
+						<li class="breadcrumb-item"><a href="index.html">Home</a></li>
+						<li class="breadcrumb-item"><a href="#">my orders</a></li>
+
+					</ol>
+				</div><!-- End .container -->
+			</nav><!-- End .breadcrumb-nav -->
+
+			<div class="page-content">
+				<div class="container">
+
+					<table class="table table-wishlist table-mobile">
+						<thead>
+							<tr>
+								<th>Image</th>
+								<th>Product Name</th>
+								<th>Unit price</th>
+								<th>Qty</th>
+								<th>Order Date</th>
+								<th>Staus</th>
+								<th>Action</th>
+							</tr>
+						</thead>
+
+						<tbody>
+							{{#each products}}
+							<tr>
+
+								<td style='width:80px'><img src="/images/product-images/{{this.product.img.[0]}}" alt=""></td>
+								<td class="in-stock">{{this.product.name}}</td>
+								<td>{{this.product.price}}</td>
+								<td>{{this.quantity}}</td>
+								<td>{{this.date}}</td>
+								<td class="out-of-stock">{{this.productStatus}}</td>
+								{{!-- <td>order Detailes</td> --}}
+
+								{{#if_eq this.productStatus 'Deliverd'}}
+
+										<td><a href="/productReturn/{{this._id}}/{{this.product._id}}" class="btn btn-outline-primary">
+										<i class="icon-list-alt"></i>Return
+									</a></td>
+
+								{{else}}
+
+												{{#if_Neq this.productStatus 'Out for Delivery'}}
+									
+                      {{#if_Neq this.productStatus 'Return Initiated'}}
+
+                      {{#if_Neq this.productStatus 'Return Approved'}}
+                      {{#if_Neq this.productStatus 'Cancelled'}}
+
+														<td><a href="/productCancel/{{this._id}}/{{this.product._id}}" class="btn btn-outline-danger">
+										<i class="icon-list-alt"></i>Cancel
+									</a></td>
+															
+											         
+																{{/if_Neq}}
+                                {{/if_Neq}}
+                                {{/if_Neq}}
+                                {{/if_Neq}}
+                {{/if_eq}}
+
+
+						{{!-- <td><a href="/productCancel/{{this._id}}/{{this.product._id}}" class="btn btn-outline-danger">
+										<i class="icon-list-alt"></i>Cancel
+									</a></td>  --}}
+
+								{{!-- <td class="remove-col"><button class="btn-remove"><i class="icon-close"></i></button></td>
+							</tr> --}}
+
+							{{/each}}
+						</tbody>
+					</table><!-- End .table table-wishlist -->
+
+				</div><!-- End .container -->
+			</div><!-- End .page-content -->
+		</main><!-- End .main -->
+
+
+
+
+
+
+</body>

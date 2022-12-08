@@ -1,0 +1,107 @@
+{{>adminSidebar}}
+{{>adminHeader}}
+
+
+<section class="content-main">
+    <div class="content-header">
+        <div>
+            <h2 class="content-title card-title">Brand </h2>
+            <p>Add, edit or delete a Brand</p>
+        </div>
+        <div>
+            <input type="text" placeholder="Search Brand" class="form-control bg-white">
+        </div>
+    </div>
+    <div class="card">
+        <div class="card-body">
+            <div class="row">
+                <div class="col-md-3">
+
+                    <form action="/admin/brand" method="post">
+                        <div class="mb-4">
+                            <label for="product_name" class="form-label">Brand Name</label>
+                            <input type="text" name="brand" placeholder="Type here" class="form-control"
+                                id="product_name" />
+                        </div>
+                        <div class="mb-4">
+                            <label for="discount" class="form-label">Discount</label>
+                            <input name="discount" type="text" placeholder="Type here" class="form-control"
+                                id="product_slug" />
+                        </div>
+                        {{!-- <div class="mb-4">
+                            <label class="form-label">Parent</label>
+                            <select class="form-select">
+                                <option>Clothes</option>
+                                <option>T-Shirts</option>
+                            </select>
+                        </div> --}}
+                        {{!-- <div class="mb-4">
+                            <label class="form-label">Description</label>
+                            <textarea placeholder="Type here" class="form-control"></textarea>
+                        </div> --}}
+                        <div class="d-grid">
+                            {{!-- <input type="submit"> --}}
+                            <button type="submit" style="color:#ffff;" class="btn btn-primary"> Create Brand</button>
+                        </div>
+                    </form>
+
+
+                </div>
+                <div class="col-md-9">
+                    <div class="table-responsive">
+                        <table class="table table-hover">
+                            <thead>
+                                <tr>
+                                    <th class="text-center">
+                                        {{!-- <div class="form-check">
+                                            <input class="form-check-input" type="checkbox" value="" />
+                                        </div> --}}
+                                    </th>
+
+                                    <th>Brand Name</th>
+                                    {{!-- <th>Description</th> --}}
+                                    <th>Discount</th>
+
+                                    <th class="text-end">Action</th>
+                                </tr>
+                            </thead>
+
+                            <tbody>
+                                {{#each brands}}
+                                <tr>
+                                    <td class="text-center">
+                                        {{!-- <div class="form-check">
+                                            <input class="form-check-input" type="checkbox" value="" />
+                                        </div> --}}
+                                    </td>
+
+                                    <td><b>{{this.brand}}</b></td>
+                                    {{!-- <td>Men clothes</td> --}}
+                                    <td>{{this.discount}}%</td>
+
+                                    <td class="text-end">
+                                        <div class="dropdown">
+                                            <a href="/admin/editBrand/{{this._id}}" style="width:85px"
+                                                class="btn btn-warning">Edit</a>
+
+                                        </div> <!-- dropdown //end -->
+                                        <div class="dropdown">
+                                            <a href="/admin/deleteBrand/{{this._id}}"
+                                                onclick="return confirm ('are you sure want to delete {{this.brand}}')"
+                                                style="width:85px" class="btn btn-danger">Delete</a>
+
+                                        </div> <!-- dropdown //end -->
+                                    </td>
+                                </tr>
+                                {{/each}}
+                                {{!-- --}}
+                            </tbody>
+                        </table>
+                    </div>
+                </div> <!-- .col// -->
+            </div> <!-- .row // -->
+        </div> <!-- card body .// -->
+    </div> <!-- card .// -->
+</section> <!-- content-main end// -->
+
+</main>

@@ -1,0 +1,79 @@
+{{>adminSidebar}}
+{{>adminHeader}}
+
+
+<section class="content-main">
+    <div class="content-header">
+        <div>
+            <h2 class="content-title card-title">Users List </h2>
+            <p>Block or Unblock a User</p>
+        </div>
+        <div>
+            <input type="text" placeholder="Search Categories" class="form-control bg-white">
+        </div>
+    </div>
+    <div class="card">
+        <div class="card-body">
+
+            <div class="row">
+                <div class="">
+
+                </div>
+                <div class="">
+                    <div class="table-responsive">
+                        <table class="table table-hover">
+                            <thead>
+                                <tr>
+                                    <th class="text-center">
+
+                                    </th>
+
+                                    <th>Name</th>
+
+                                    <th>Email</th>
+                                    <th>Mobile</th>
+
+                                    <th class="text-end">Action</th>
+                                </tr>
+                            </thead>
+
+                            <tbody>
+                                {{#each users}}
+                                <tr>
+                                    <td class="text-center">
+
+                                    </td>
+
+                                    <td>{{this.name}}</td>
+                                    <td>{{this.email}}</td>
+
+                                    <td>{{this.mobile}}</td>
+
+                                    <td class="text-end">
+
+                                        <div class="dropdown">
+
+                                            {{#if this.block}}
+                                            <a href="/admin/unblock/{{this._id}}" style="width:85px"
+                                                class="btn btn-danger">unblock</a>
+                                            {{else}}
+                                            <a href="/admin/block/{{this._id}}" style="width:85px"
+                                                class="btn btn-success">block</a>
+                                            {{/if}}
+
+                                        </div> <!-- dropdown //end -->
+                                    </td>
+                                </tr>
+                                {{/each}}
+
+                            </tbody>
+                        </table>
+                    </div>
+                </div> <!-- .col// -->
+            </div> <!-- .row // -->
+        </div> <!-- card body .// -->
+
+    </div> <!-- card .// -->
+</section> <!-- content-main end// -->
+
+</main>

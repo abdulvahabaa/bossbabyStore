@@ -1,0 +1,81 @@
+{{>userHeader}}
+
+
+<body>
+	<div class="page-wrapper">
+
+ <nav class="nav nav-pills nav-justified">
+        <a class="nav-item nav-link border border-primary" href="/userProfile">Profile</a>
+  <a class="nav-item nav-link border border-primary" href="/myAddress">My Address</a>
+
+        <a class="nav-item nav-link border border-primary" href="/orders">Myorders</a>
+        {{!-- <a class="nav-item nav-link border border-primary" href="/wallet">Wallet</a> --}}
+           
+      </nav>
+
+		<main class="main">
+			<div class="page-header text-center" style="background-image: url('assets/userAssets/images/page-header-bg.jpg')">
+				<div class="container">
+					<h1 class="page-title">My Orders<span>Shop</span></h1>
+				</div><!-- End .container -->
+			</div><!-- End .page-header -->
+			{{!-- <nav aria-label="breadcrumb" class="breadcrumb-nav">
+				<div class="container">
+					<ol class="breadcrumb">
+						<li class="breadcrumb-item"><a href="index.html">Home</a></li>
+						<li class="breadcrumb-item"><a href="#">my orders</a></li>
+
+					</ol>
+				</div><!-- End .container -->
+			</nav><!-- End .breadcrumb-nav --> --}}
+
+			<div class="page-content">
+				<div class="container">
+					{{#each orders}}
+					<table class="table table-wishlist table-mobile">
+						<thead>
+							<tr>
+								<th>Order Id</th>
+								<th>Ship To</th>
+								<th>Order Date </th>
+								<th>Payment Method</th>
+								{{!-- <th>Coupon</th> --}}
+								<th>Total</th>
+								<th>Order Detailes</th>
+							</tr>
+						</thead>
+
+						<tbody>
+
+							<tr>
+
+								<td style="font-size:10px">{{this._id}}</td>
+								<td class="in-stock">{{../address.fname}}
+									{{../address.lname}},<br>{{../address.address}},{{../address.town}}{{../address.state}}<br>{{../address.phone}}
+								</td>
+								<td>{{this.date}}</td>
+								<td>{{this.typeofpayment}}</td>
+								{{!-- <td>not aplied</td> --}}
+								<td class="out-of-stock">{{this.totalAfterDiscount}}</td>
+								{{!-- <td>order Detailes</td> --}}
+								<td><a href="/OrderDetailes/{{this._id}}" class="btn btn-outline-primary-2">
+										<i class="icon-list-alt"></i>Order Detailes
+									</a></td>
+
+								<td class="remove-col"><button class="btn-remove"><i class="icon-close"></i></button></td>
+							</tr>
+
+
+						</tbody>
+					</table><!-- End .table table-wishlist -->
+					{{/each}}
+				</div><!-- End .container -->
+			</div><!-- End .page-content -->
+		</main><!-- End .main -->
+
+
+
+
+
+
+</body>

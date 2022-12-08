@@ -1,0 +1,151 @@
+{{>userHeader}}
+
+<nav class="nav nav-pills nav-justified">
+  <a class="nav-item nav-link border border-primary" href="/userProfile">Profile</a>
+  <a class="nav-item nav-link border border-primary" href="/myAddress">My Address</a>
+  <a class="nav-item nav-link border border-primary" href="/orders">Myorders</a>
+  {{!-- <a class="nav-item nav-link border border-primary" href="/wallet">Wallet</a> --}}
+     
+</nav>
+
+<form id="checkout-form">
+  <div class="row mt-5 d-flex justify-content-center">
+    <div class="col-md-4">
+      <h2 style="color: rgb(255, 48, 200);" class="checkout-title ">Address Details</h2><!-- End .checkout-title -->
+      {{#each address}}
+      <tr>
+        <td>
+          <input checked value="{{this._id}}" type="radio" name="addressId">
+          <span
+            style="display: inline-block; height: 100px; width: 350px; border: 1px solid rgba(3, 91, 255, 0.73); margin-bottom: 20px; padding: 20px; border-radius: 6px;">
+            <div class="row">
+              <div> {{this.fname}} {{this.lname}}</div>
+              {{this.address}},
+              {{this.town}},
+              {{this.state}},
+              {{this.country}},
+              {{this.pincode}},
+              <div class="mb-2"> {{this.email}}, {{this.phone}}</div>
+
+
+
+            </div>
+          </span>
+          {{!-- <a href="">delete</a> --}}
+        </td>
+        <td>
+          <a class="btn-remove" href="edit/address/{{this._id}}"><i class="icon-edit"></i></a>
+
+
+
+          <button onclick="deleteAddress('{{this._id}}')" class="btn-remove"><i class="icon-close"></i></button>
+        </td><br>
+      </tr>
+
+      {{/each}}
+
+      <div class="col-md-6">
+        {{!-- <p class="mt-3">Click here for add new address</p> --}}
+        {{!-- <button class="btn btn-outline-primary-2 btn-order btn-block mt-2" data-bs-toggle="modal"
+          data-bs-target="#addAddress">Add New Adresses</button> --}}
+        <button type="button" class="btn btn-primary mt-3" data-bs-toggle="modal" data-bs-target="#addAddress"> Add New
+          Address
+        </button>
+      </div>
+
+
+
+
+    </div><!-- End .col-lg-9 -->
+
+  </div>
+</form>
+
+
+
+
+
+{{!-- add address modal--}}
+<div class="modal fade" id="addAddress" tabindex="-1" aria-labelledby="addAddressLabel" aria-hidden="true">
+  {{!-- <form action="/user/add-address" method="post" enctype="multipart/form-data"> --}}
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h3 class="modal-title fs-5" id="addAddressLabel">Enter your Address </h3>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body ml-5">
+          <div class="content-main">
+            <form action="/add-address" method="post" id="addcheckout-form">
+              <div class="row">
+                <div class="col-lg-9">
+                  <h2 class="checkout-title"></h2><!-- End .checkout-title -->
+                  <div class="row">
+                    <div class="col-sm-6">
+                      <label>First Name *</label>
+                      <input type="text" name="fname" class="form-control" required>
+                    </div><!-- End .col-sm-6 -->
+
+                    <div class="col-sm-6">
+                      <label>Last Name *</label>
+                      <input type="text" name="lname" class="form-control" required>
+                    </div><!-- End .col-sm-6 -->
+                  </div><!-- End .row -->
+
+                  {{!-- <label>Company Name (Optional)</label>
+                  <input type="text" class="form-control"> --}}
+
+                  <label>Country *</label>
+                  <input type="text" name="country" value="India" readonly class="form-control" required>
+
+                  <label>Street address *</label>
+                  <input type="text" class="form-control" name="address" placeholder="House number and Street name"
+                    required>
+                  {{!-- <input type="text" class="form-control" placeholder="Appartments, suite, unit etc ..." required>
+                  --}}
+
+                  <div class="row">
+                    <div class="col-sm-6">
+                      <label>Town / City *</label>
+                      <input type="text" name="town" class="form-control" required>
+                    </div><!-- End .col-sm-6 -->
+
+                    <div class="col-sm-6">
+                      <label>State *</label>
+                      <input type="text" name="state" class="form-control" required>
+                    </div><!-- End .col-sm-6 -->
+                  </div><!-- End .row -->
+
+                  <div class="row">
+                    <div class="col-sm-6">
+                      <label>Postcode / ZIP *</label>
+                      <input type="text" name="pincode" class="form-control" required>
+                    </div><!-- End .col-sm-6 -->
+
+                    <div class="col-sm-6">
+                      <label>Phone *</label>
+                      <input type="tel" name="phone" class="form-control" required>
+                    </div><!-- End .col-sm-6 -->
+                  </div><!-- End .row -->
+
+                  <label>Email address *</label>
+                  <input type="email" name="email" class="form-control" required>
+                  <input type="text" name="userId" class="form-control" value="{{user._id}}" hidden>
+
+                </div>
+              </div>
+
+
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+            <button type="submit" class="btn btn-primary">Add Address</button>
+          </div>
+        </div>
+  </form>
+</div>
+{{!-- add address maodal end --}}
+
+
+
+<script src="/javascripts/address.js"></script>

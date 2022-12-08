@@ -1,0 +1,153 @@
+{{>adminSidebar}}
+{{>adminHeader}}
+
+
+<body>
+  <div class="screen-overlay"></div>
+
+
+
+  <section class="content-main">
+    <div class="content-header">
+      <div>
+        <h2 class="content-title card-title">Coupon..</h2>
+
+      </div>
+      <div>
+
+
+        <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#addCoupon"><i
+            class="text-muted material-icons md-post_add"></i> Create New Coupon
+        </button>
+
+
+      </div>
+
+    </div>
+    <div class="card mb-4">
+
+      <div class="card-body">
+        <div class="table-responsive">
+          <table id="example" class="table table-hover">
+            <thead>
+              <tr>
+                <td>No.</td>
+                <th>Coupon Code</th>
+                <th>Expairy Date</th>
+                <th>Max Amount</th>
+                <th>Min Amount</th>
+                <th>Percentage</th>
+
+                <th class="text-end">Action</th>
+              </tr>
+            </thead>
+            <tbody>
+              {{#each coupons }}
+              <tr>
+                <td></td>
+                <td>{{this.couponCode}}</td>
+                <td><b>{{this.expairyDate}}</b></td>
+                <td>{{this.maxAmount}}</td>
+                <td>{{this.minAmount}}</td>
+                <td>{{this.discount}}</td>
+                <td class="text-end">
+                  <a href="/admin/deleteCoupon/{{this._id}}" class="btn btn-md rounded  font-sm"><i class="material-icons md-delete_forever"></i>Delete</a>
+
+
+        </div> <!-- dropdown //end -->
+        </td>
+        </tr>
+        {{/each}}
+        </tbody>
+        </table>
+      </div> <!-- table-responsive//end -->
+    </div>
+    <!-- card-body end// -->
+    </div>
+    {{!-- <div class="pagination-area mt-30 mb-50">
+      <nav aria-label="Page navigation example">
+        <ul class="pagination justify-content-start">
+          <li class="page-item active"><a class="page-link" href="#">01</a></li>
+          <li class="page-item"><a class="page-link" href="#">02</a></li>
+          <li class="page-item"><a class="page-link" href="#">03</a></li>
+          <li class="page-item"><a class="page-link dot" href="#">...</a></li>
+          <li class="page-item"><a class="page-link" href="#">16</a></li>
+          <li class="page-item"><a class="page-link" href="#"><i class="material-icons md-chevron_right"></i></a></li>
+        </ul>
+      </nav>
+    </div> --}}
+  </section> <!-- content-main end// -->
+
+  {{!-- add coupon modal --}}
+  <div class="modal fade" id="addCoupon" tabindex="-1" aria-labelledby="addAddressLabel" aria-hidden="true">
+
+    <div class="modal-dialog">
+      <div class="modal-content">
+
+        <form action="/admin/addCoupon" method="post" id="addcheckout-form">
+          <div class="modal-header">
+            <h3 class="modal-title fs-5" id="addAddressLabel">Enter Coupon Details </h3>
+            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+          </div>
+          <div class="modal-body ml-5">
+
+
+            <div class="row">
+              <div class="col-lg-12">
+                <h2 class="checkout-title"></h2><!-- End .checkout-title -->
+
+                <div class="">
+                  <label>Coupon Code</label>
+                  <input type="text" name="couponCode" class="form-control" required>
+                </div><!-- End .col-sm-6 -->
+
+                <div class="">
+                  <label>Expairy Date</label>
+                  <input type="date" name="expairyDate" class="form-control" required>
+                </div><!-- End .col-sm-6 -->
+
+                <div class="">
+                  <label>Max Amount</label>
+                  <input type="text" name="maxAmount" class="form-control" required>
+                </div><!-- End .col-sm-6 -->
+
+                <div class="">
+                  <label>Min Amount </label>
+                  <input type="text" name="minAmount" class="form-control" required>
+                </div><!-- End .col-sm-6 -->
+
+                <div class="">
+                  <label>Discount Percentage</label>
+                  <input type="text" name="discount" class="form-control" required>
+                </div><!-- End .col-sm-6 -->
+
+
+              </div><!-- End .row -->
+
+            </div>
+          </div>
+
+          <div class="modal-footer mt-2">
+            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+            <button type="submit" class="btn btn-primary">Add Coupon</button>
+          </div>
+        </form>
+      </div>
+
+    </div>
+
+  </div>
+
+
+
+
+</body>
+<script>
+  var table = document.getElementsByTagName('table')[0],
+    rows = table.getElementsByTagName('tr'),
+    text = 'textContent' in document ? 'textContent' : 'innerText';
+
+  for (var i = 1, len = rows.length; i < len; i++) {
+    rows[i].children[0][text] = i + ' ' + rows[i].children[0][text];
+  }
+</script>

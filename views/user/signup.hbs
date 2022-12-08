@@ -1,0 +1,152 @@
+{{>LoginHeder}}
+
+<body>
+
+    <div class="limiter">
+        <div class="container-login100">
+            <div class="wrap-login100">
+                <div class="login100-pic js-tilt" data-tilt>
+                    <img src="/assets/loggin/images/img-01.png" alt="IMG">
+                </div>
+
+                <form action="/signup" method="post" class="login100-form validate-form">
+                    <span class="login100-form-title">
+                        Member Signup
+                        <div>
+                            <p> ---</p>
+                        </div>
+                        <div class="wrap-input100 validate-input" data-validate="Password is required">
+                            <input class="input100" type="text" name="name" placeholder="Name" id="name"
+                                onkeyup="validatename()">
+                            <span class="focus-input100"></span>
+                            <span class="symbol-input100">
+                                <i class="fa fa-user" aria-hidden="true"></i>
+                            </span>
+
+                        </div>
+                        <span style="font-size:medium" id="ErrorName"></span>
+
+                        <div class="wrap-input100 validate-input" data-validate="Valid email is required: ex@abc.xyz">
+                            <input class="input100" type="email" name="email" placeholder="Email" id="email"
+                                onkeyup="validateEmail()">
+                            <span class="focus-input100"></span>
+                            <span class="symbol-input100">
+                                <i class="fa fa-envelope" aria-hidden="true"></i>
+                            </span>
+                        </div>
+                        <span style="font-size:medium" id="ErrorEmail"></span>
+
+
+                        <div class="wrap-input100 validate-input" data-validate="Password is required">
+                            <input class="input100" type="password" name="password" placeholder="Password">
+                            <span class="focus-input100"></span>
+                            <span class="symbol-input100">
+                                <i class="fa fa-lock" aria-hidden="true"></i>
+                            </span>
+                        </div>
+
+                        <div class="wrap-input100 validate-input" data-validate="Password is required">
+                            <input class="input100" type="tel" name="mobile" placeholder="Mobile" id="phoneNumber"
+                                onkeyup="validatePhoneNumber()">
+                            <span class="focus-input100"></span>
+                            <span class="symbol-input100">
+                                <i class="fa fa-mobile" aria-hidden="true"></i>
+                            </span>
+                        </div>
+                        <span style="font-size:medium" id="ErrorPhoneNumber"></span>
+                        <div class="container-login100-form-btn">
+                            <button type="submit" class="login100-form-btn" onclick="return validateForm()">
+                                Signup
+                            </button>
+                        </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+</body>
+<script>
+
+    var ErrorName = document.getElementById('ErrorName');
+    var ErrorEmail = document.getElementById('ErrorEmail');
+    var ErrorPhoneNumber = document.getElementById('ErrorPhoneNumber')
+    var ErrorSubmit = document.getElementById('ErrorSubmit');
+
+    function validatename() {
+
+        var vname = document.getElementById('name').value;
+
+        var nameRegex = /^(?!-)[a-zA-Z-]*[a-zA-Z]$/;
+        var required = 4;
+        var left = required - vname.length;
+
+        if (left > 0) {
+            ErrorName.innerHTML = left + 'More Charecters required';
+            ErrorName.style.color = "red";
+            return false;
+        }
+        if (vname.match(nameRegex) == null) {
+            ErrorName.innerHTML = 'name is invalid';
+            return false;
+        }
+        ErrorName.innerHTML = 'valid';
+        ErrorName.style.color = "green";
+        return true;
+    }
+
+
+    function validateEmail() {
+        var vemail = document.getElementById('email').value;
+
+        if (vemail.length == 0) {
+            ErrorEmail.innerHTML = 'Email required';
+            ErrorEmail.style.color = "red";
+
+        }
+        // if(!vemail.match(/^([\-\.0-9a-zA-Z]+)@([\-\..0-9a-zA-Z]+)\.([a-z]){2,7}$/)){
+
+        if (!vemail.match(/^([\-\.0-9a-zA-Z]+)@([\-\..0-9a-zA-Z]+)\.([a-z]){2,7}$/)) {
+            ErrorEmail.innerHTML = 'Email Invalid';
+            ErrorEmail.style.color = "red";
+
+            return false;
+        }
+        ErrorEmail.innerHTML = 'valid';
+        ErrorEmail.style.color = "green";
+        return true;
+    }
+
+    function validatePhoneNumber() {
+        var vPhoneNumber = document.getElementById('mobile').value;
+        var required = 10;
+        var left = required - vPhoneNumber.length;
+        if (left > 0) {
+            ErrorPhoneNumber.innerHTML = 'invalid phone-number';
+            ErrorPhoneNumber.style.color = 'red';
+            return false;
+        }
+        if (isNaN(vPhoneNumber)) {
+            document.getElementById('ErrorPhoneNumber').innerHTML = "Enter Numeric value only";
+            return false;
+        }
+
+
+
+        ErrorPhoneNumber.innerHTML = 'valid';
+        ErrorPhoneNumber.style.color = 'green';
+        return true;
+    }
+
+
+    function validateForm() {
+
+        if (!validatename() || !validateEmail() || !validatemessage() || !validatesubject()) {
+            ErrorSubmit.style.display = 'block';
+            ErrorSubmit.innerHTML = 'Please fix error';
+            setTimeout(function () { ErrorSubmit.style.display = 'none'; }, 3000);
+            return false;
+        }
+    }
+
+</script>
+{{>LoginFooter}}

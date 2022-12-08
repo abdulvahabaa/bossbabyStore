@@ -1,0 +1,172 @@
+<style>.card-registration .select-input.form-control[readonly]:not([disabled]) {
+  font-size: 1rem; line-height: 2.15; padding-left: .75em; padding-right: .75em;
+  } .card-registration .select-arrow { top: 13px; }</style>
+
+<section class="h-100 bg-dark">
+  <div class="container py-5 h-100">
+    <div class="row d-flex justify-content-center align-items-center h-100">
+      <div class="col">
+        <div class="card card-registration my-4">
+          <div class="row g-0">
+            <div class="col-xl-6 d-none d-xl-block">
+              <img
+                src="https://mdbcdn.b-cdn.net/img/Photos/new-templates/bootstrap-registration/img4.webp"
+                alt="Sample photo"
+                class="img-fluid"
+                style="border-top-left-radius: .25rem; border-bottom-left-radius: .25rem;"
+              />
+            </div>
+            <div class="col-xl-6">
+              <div class="card-body p-md-5 text-black">
+                <h3 class="mb-5 text-uppercase text-center">Edit Address</h3>
+
+                <form action="/updateAddressSubmit/{{address._id}}" method="post">
+
+                  <div class="row">
+                    <div class="col-md-6">
+                      <div class="form-outline">
+                        <label class="form-label" for="form3Example1m">First
+                          name</label>
+                        <input
+                          type="text"
+                          id="form3Example1m"
+                          name="fname"
+                          value="{{address.fname}}"
+                          class="form-control form-control-lg"
+                        />
+                      </div>
+                    </div>
+                    <div class="col-md-6">
+                      <div class="form-outline">
+                        <label class="form-label" for="form3Example1n">Last name</label>
+                        <input
+                          type="text"
+                          id="form3Example1n"
+                          name="lname"
+                          value="{{address.lname}}"
+                          class="form-control form-control-lg"
+                        />
+                      </div>
+                    </div>
+                  </div>
+
+                  <div class="form-outline">
+                    <label
+                      class="form-label"
+                      for="form3Example8"
+                    >country</label>
+                    <input
+                      type="text"
+                      id="form3Example8"
+                      name="country"
+                      value="{{address.country}}"
+                      class="form-control form-control-lg"
+                    />
+                  </div>
+
+                  <div class="form-outline">
+                    <label
+                      class="form-label"
+                      for="form3Example8"
+                    >Address</label>
+                    <input
+                      type="text"
+                      id="form3Example8"
+                      name="address"
+                      value="{{address.address}}"
+                      class="form-control form-control-lg"
+                    />
+                  </div>
+
+                  <div class="row">
+                    <div class="col-md-6">
+                      <div class="form-outline">
+                        <label class="form-label" for="form3Example1m">Town
+                          /City</label>
+                        <input
+                          type="text"
+                          id="form3Example1m"
+                          name="town"
+                          value="{{address.town}}"
+                          class="form-control form-control-lg"
+                        />
+                      </div>
+                    </div>
+                    <div class="col-md-6">
+                      <div class="form-outline">
+                        <label
+                          class="form-label"
+                          for="form3Example1n"
+                        >State</label>
+                        <input
+                          type="text"
+                          id="form3Example1n"
+                          name="state"
+                          value="{{address.state}}"
+                          class="form-control form-control-lg"
+                        />
+                      </div>
+                    </div>
+                  </div>
+
+                  <div class="row">
+                    <div class="col-md-6">
+                      <div class="form-outline">
+                        <label
+                          class="form-label"
+                          for="form3Example1m"
+                        >pincode</label>
+                        <input
+                          type="text"
+                          id="form3Example1m"
+                          name="pincode"
+                          value="{{address.pincode}}"
+                          class="form-control form-control-lg"
+                        />
+                      </div>
+                    </div>
+                    <div class="col-md-6">
+                      <div class="form-outline">
+                        <label
+                          class="form-label"
+                          for="form3Example1n"
+                        >phone</label>
+                        <input
+                          type="text"
+                          id="form3Example1n"
+                          name="phone"
+                          value="{{address.phone}}"
+                          class="form-control form-control-lg"
+                        />
+                      </div>
+                    </div>
+                  </div>
+
+                  <div class="form-outline">
+                    <label class="form-label" for="form3Example97">Email ID</label>
+                    <input
+                      type="text"
+                      id="form3Example97"
+                      name="email"
+                      value="{{address.email}}"
+                      class="form-control form-control-lg"
+                    />
+                  </div>
+
+                  <div class="d-flex justify-content-end pt-3">
+
+                    <button
+                      type="submit" 
+                      class="btn btn-warning btn-lg ms-2"
+                    >Update Address</button>
+                  </div>
+                </form>
+
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

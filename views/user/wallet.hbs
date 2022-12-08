@@ -1,0 +1,61 @@
+
+{{userHeader}}
+<body>
+    <div class="site-wrap">
+        
+        <div class="container rounded bg-white" style="margin-top: 3%;">
+          
+            <div class="row mt-5 d-flex justify-content-center">
+                <div class="col-md-4 "></div>
+                <div class="col-md-4 ">
+                    <div class="card text-center text-dark"
+                        style="width: 20rem;border-radius: 20px;border-width:3px;border-color: #ee4266;">
+                        <div class="card-body">
+                            <h2 class="card-title"><i class="fa-solid fa-wallet"></i>Wallet</h2>
+                            <h3 class="card-title">{{wallet.walletAmt}}</h3>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4"></div>
+                <div class="card p-2  mt-3" style="border-radius: 20px;border-width:3px;border-color: #ee4266;">
+                    <table class="table table-borderless ">
+                        <thead>
+                            <tr>
+                                <th scope="col">Type</th>
+                                <th scope="col">Details</th>
+                                <th scope="col">Date</th>
+                                <th scope="col">Amount</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            
+                            <tr>
+                                <td>{{this.Type}}</td>
+                                <td>{{this.Detail}}&nbsp;{{this.quantity}}</td>
+                                <td>{{this.Date}}</td>
+                                <td><strong>{{this.Amount}}</strong></td>
+                            </tr>
+                           
+                        </tbody>
+                    </table>
+                </div>
+
+
+
+            </div>
+        </div>
+    </div>
+
+    
+    {{!-- <script>
+        let currentlocation = location.href
+        let menu = document.querySelectorAll('a.nav-item')
+        let length = menu.length
+        for (i = 0; i < length; i++) {
+            if (menu[i].href === currentlocation) {
+                menu[i].className = 'nav-item nav-link bg-primary text-light'
+            }
+        }
+    </script> --}}
+</body>
+

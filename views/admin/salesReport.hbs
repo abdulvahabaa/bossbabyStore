@@ -1,0 +1,179 @@
+
+<link rel="stylesheet" href="https://cdn.datatables.net/1.13.1/css/jquery.dataTables.min.css">
+
+<link rel="stylesheet" href="https://cdn.datatables.net/1.13.1/css/jquery.dataTables.min.css">
+
+<link rel="stylesheet" href="https://cdn.datatables.net/buttons/2.3.2/css/buttons.dataTables.min.css">
+
+<script src="https://cdn.datatables.net/1.13.1/js/jquery.dataTables.min.js"></script>
+<script src="https://code.jquery.com/jquery-3.5.1.js"></script>
+<script src="https://cdn.datatables.net/1.13.1/js/jquery.dataTables.min.js"></script>
+<script src="https://cdn.datatables.net/buttons/2.3.2/js/dataTables.buttons.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.1.3/jszip.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.53/pdfmake.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.53/vfs_fonts.js"></script>
+<script src="https://cdn.datatables.net/buttons/2.3.2/js/buttons.html5.min.js"></script>
+<script src="https://cdn.datatables.net/buttons/2.3.2/js/buttons.print.min.js"></script>
+
+
+{{>adminSidebar}}
+{{>adminHeader}}
+
+
+<body>
+    <div class="screen-overlay"></div>
+ 
+   
+       
+        <section class="content-main">
+            <div class="content-header">
+                <div>
+                    <h2 class="content-title card-title">Sales Report..</h2>
+                    
+                </div>
+                {{!-- <div>
+                     <a href="#" class="btn btn-primary"><i class="text-muted material-icons md-post_add"></i>Download In PDF</a>
+                      <a href="#" class="btn btn-primary"><i class="text-muted material-icons md-post_add"></i>Download In Excel</a>
+                    
+                </div> --}}
+                
+            </div>
+
+
+
+
+            
+            <div class="card mb-4">
+               
+                <div class="card-body">
+                    <div class="row">
+                        <div class="col-md-4">
+                            <form action="/admin/fromto" method="get">
+                                <div class="row">
+                                    <div class="col-6">
+                                        <label for="FromDate">From</label>
+                                        <input type="date" name="FromDate" id="expiryDate" class="form-control"
+                                            value="{{date.FromDate}}">
+                                    </div>
+                                    <div class="col-6">
+                                        <label for="ToDate">To</label>
+                                        <input type="date" name="ToDate" id="expiryDate" class="form-control"
+                                            value="{{date.ToDate}}">
+                                    </div>
+                                    <button type="submit" hidden></button>
+                                </div>
+                            </form>
+                        </div>
+                        <div class="col-md-4">
+                            <form action="/admin/monthly" method="get">
+                                <div class="row">
+                                    <div class="col-12">
+                                        <label for="month">Month</label>
+                                        <input type="month" name="month" id="monthly" class="form-control"
+                                            value="{{cdate.month}}">
+                                    </div>
+                                    <button type="submit" hidden></button>
+                                </div>
+                            </form>
+                        </div>
+                        <div class="col-md-4">
+                            <form action="/admin/salesyearly" method="get">
+                                <div class="row">
+                                    <div class="col-12">
+                                        <label for="yearly">Year</label>
+                                        <input type="number" name="yearly" id="yearly" class="form-control"
+                                            value="{{cyear.yearly}}">
+                                    </div>
+                                    <button type="submit" hidden></button>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                    <div class="table-responsive">
+                        <table id="example" class="table table-hover">
+                            <thead>
+                                <tr>
+                                   <th>NO</th>
+                                    <th>#OrderId</th>
+                                    <th>Date</th>
+                                    <th>Total</th>
+                                    <th>Payment Method</th>
+                                    <th>Status</th>
+                                    {{!-- <th class="text-end">Action</th> --}}
+                                </tr>
+                            </thead>
+                            <tbody>
+                                {{#each yearlyReport }}
+                                <tr>
+                                    <td></td>
+                                    <td>{{this._id}}</td>
+                                    <td><b>{{this.day}}</b></td>
+                                    <td>{{this.total}}</td>
+                                    <td>{{this.typeofpayment}}</td>
+                                    <td>{{this.status}}</td>
+                                    {{!-- <td class="text-end">
+                                        <a href="#" class="btn btn-md rounded rfont-sm">Detail</a>
+                                        <div class="dropdown">
+                                            <a href="#" data-bs-toggle="dropdown" class="btn btn-light rounded btn-sm font-sm"> <i class="material-icons md-more_horiz"></i> </a>
+                                            <div class="dropdown-menu">
+                                                <a class="dropdown-item" href="#">View detail</a>
+                                                <a class="dropdown-item" href="#">Edit info</a>
+                                                <a class="dropdown-item text-danger" href="#">Delete</a>
+                                            </div>
+                                        </div> <!-- dropdown //end -->
+                                    </td> --}}
+                                </tr>
+                      {{/each}}
+                            </tbody>
+                            <tfoot>
+                                <tr>
+                                    <td></td>
+                                    <td>Total</td>
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+                                    <td>haiiiiii</td>
+
+                                </tr>
+                            </tfoot>
+                        </table>
+                    </div> <!-- table-responsive//end -->
+                </div>
+                <!-- card-body end// -->
+            </div>
+            {{!-- <div class="pagination-area mt-30 mb-50">
+                <nav aria-label="Page navigation example">
+                    <ul class="pagination justify-content-start">
+                        <li class="page-item active"><a class="page-link" href="#">01</a></li>
+                        <li class="page-item"><a class="page-link" href="#">02</a></li>
+                        <li class="page-item"><a class="page-link" href="#">03</a></li>
+                        <li class="page-item"><a class="page-link dot" href="#">...</a></li>
+                        <li class="page-item"><a class="page-link" href="#">16</a></li>
+                        <li class="page-item"><a class="page-link" href="#"><i class="material-icons md-chevron_right"></i></a></li>
+                    </ul>
+                </nav>
+            </div> --}}
+        </section> <!-- content-main end// -->
+       
+    
+
+</body>
+<script>
+  var table = document.getElementsByTagName('table')[0],
+    rows = table.getElementsByTagName('tr'),
+    text = 'textContent' in document ? 'textContent' : 'innerText';
+
+  for (var i = 1, len = rows.length; i < len; i++) {
+    rows[i].children[0][text] = i + ' ' + rows[i].children[0][text];
+  }
+</script>
+<script>
+    $(document).ready(function() {
+    $('#example').DataTable( {
+        dom: 'Bfrtip',
+        buttons: [
+             'excel', 'pdf', 'print'
+        ]
+    } );
+} );
+</script>
