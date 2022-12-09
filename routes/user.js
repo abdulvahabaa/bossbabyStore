@@ -115,7 +115,7 @@ router.get('/addToWishlist/:id', verifyUser, addToWishlist)
 
 router.post('/deleteWishlist/:id', verifyUser, deleteWishlist)
 
-router.get('/userProfile', userProfile)
+router.get('/ProfilePage', userProfile)
 
 router.post('/updateuser', updateuser)
 

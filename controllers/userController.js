@@ -604,7 +604,7 @@ module.exports = {
 
     userHelper.getUserDetails(req.session.user._id).then((user) => {
       console.log(user);
-      res.render("user/userProfile", { User: true, user });
+      res.render("user/profilePage", { User: true, user });
     });
   },
 
