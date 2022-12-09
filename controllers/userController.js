@@ -600,6 +600,7 @@ module.exports = {
 
   userProfile: (req, res) => {
     console.log("!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!");
+    console.log(req.session.user._id)
 
     userHelper.getUserDetails(req.session.user._id).then((user) => {
       console.log(user);
