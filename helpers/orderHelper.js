@@ -259,6 +259,8 @@ module.exports = {
           },
           {
             $project: {
+              actualAmount: 1,
+              totalAfterDiscount:1,
               total: 1,
               addressId: 1,
               typeofpayment: 1,
@@ -280,6 +282,8 @@ module.exports = {
               typeofpayment: 1,
               total: 1,
               date: 1,
+              actualAmount: 1,
+              totalAfterDiscount:1,
             },
           },
         ])

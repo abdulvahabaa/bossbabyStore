@@ -254,7 +254,8 @@ module.exports = {
 
   orderlist: async (req, res) => {
     let orders = await orderHelper.getAllOrder();
-
+    console.log("[[[[[[ZZZZZ]]]]]]");
+    console.log(orders);
     res.render("admin/orderlist", { orders });
   },
 

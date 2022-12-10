@@ -96,9 +96,9 @@
                                    <th>NO</th>
                                     <th>#OrderId</th>
                                     <th>Date</th>
-                                    <th>Total</th>
                                     <th>Payment Method</th>
-                                    <th>Status</th>
+                                   
+                                    <th>Total</th>
                                     {{!-- <th class="text-end">Action</th> --}}
                                 </tr>
                             </thead>
@@ -108,9 +108,10 @@
                                     <td></td>
                                     <td>{{this._id}}</td>
                                     <td><b>{{this.day}}</b></td>
-                                    <td>{{this.total}}</td>
                                     <td>{{this.typeofpayment}}</td>
-                                    <td>{{this.status}}</td>
+                                    <td>{{this.totalAfterDiscount}}</td>
+                                   
+                                   
                                     {{!-- <td class="text-end">
                                         <a href="#" class="btn btn-md rounded rfont-sm">Detail</a>
                                         <div class="dropdown">
@@ -128,11 +129,11 @@
                             <tfoot>
                                 <tr>
                                     <td></td>
-                                    <td>Total</td>
                                     <td></td>
                                     <td></td>
                                     <td></td>
-                                    <td>haiiiiii</td>
+                                  
+                                    <td></td>
 
                                 </tr>
                             </tfoot>
